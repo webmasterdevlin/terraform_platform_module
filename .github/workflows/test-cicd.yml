@@ -44,9 +44,9 @@ jobs:
         id: init
         run: |
           terraform init \
-            -backend-config="resource_group_name=testlin-modulename-rg-test" \
-            -backend-config="storage_account_name=testlinmodulenamesatest" \
-            -backend-config="container_name=testlinmodulecontainertest" \
+            -backend-config="resource_group_name=devlin-modulename-rg-test" \
+            -backend-config="storage_account_name=devlinmodulenamesatest" \
+            -backend-config="container_name=devlinmodulecontainertest" \
             -backend-config="key=terraform.tfstate"
 
       - name: Terraform Validate
@@ -123,9 +123,9 @@ jobs:
         id: init
         run: |
           terraform init \
-            -backend-config="resource_group_name=testlin-modulename-rg-test" \
-            -backend-config="storage_account_name=testlinmodulenamesatest" \
-            -backend-config="container_name=testlinmodulecontainertest" \
+            -backend-config="resource_group_name=devlin-modulename-rg-test" \
+            -backend-config="storage_account_name=devlinmodulenamesatest" \
+            -backend-config="container_name=devlinmodulecontainertest" \
             -backend-config="key=terraform.tfstate"
 
       - name: Terraform Apply
