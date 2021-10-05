@@ -1,13 +1,13 @@
-name: Prod Platform - Plan & Apply Terraform
+name: (Prod) Plan & Apply Terraform
 
 on:
   push:
     branches:
-      - master
+      - production
 
   pull_request:
     branches:
-      - master
+      - production
     paths-ignore:
       - "README.md"
 
@@ -17,6 +17,10 @@ jobs:
 
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./platform/prod
 
     env:
       # for terraform HTTP requests to Azure ARM services with required ARM_ prefix
@@ -94,8 +98,12 @@ jobs:
   apply:
     name: Terraform Apply
 
-    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/production' && github.event_name == 'push'
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./platform/prod
 
     env:
       # for terraform HTTP requests to Azure ARM services with required ARM_ prefix

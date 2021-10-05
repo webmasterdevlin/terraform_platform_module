@@ -3,7 +3,6 @@
 **.info
 **.plan
 **.terraform.lock.hcl
-.vscode
-.idea
-.terraform
-sandbox
+**.vscode
+**.idea
+**.terraform
