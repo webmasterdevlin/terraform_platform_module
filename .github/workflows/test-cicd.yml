@@ -3,11 +3,11 @@ name: (Test) Plan & Apply Terraform
 on:
   push:
     branches:
-      - production
+      - master
 
   pull_request:
     branches:
-      - production
+      - master
     paths-ignore:
       - "README.md"
 
@@ -24,10 +24,10 @@ jobs:
 
     env:
       # for terraform HTTP requests to Azure ARM services with required ARM_ prefix
-      ARM_CLIENT_ID: ${{secrets.CLIENT_ID_TEST}}
-      ARM_CLIENT_SECRET: ${{secrets.CLIENT_SECRET_TEST}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID_TEST}}
-      ARM_TENANT_ID: ${{secrets.TENANT_ID_TEST}}
+      ARM_CLIENT_ID: ${{secrets.CLIENT_ID_PROD}}
+      ARM_CLIENT_SECRET: ${{secrets.CLIENT_SECRET_PROD}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID_PROD}}
+      ARM_TENANT_ID: ${{secrets.TENANT_ID_PROD}}
 
     steps:
       - name: Checkout
@@ -44,9 +44,9 @@ jobs:
         id: init
         run: |
           terraform init \
-            -backend-config="resource_group_name=devlin-modulename-rg-test" \
-            -backend-config="storage_account_name=devlinmodulenamesatest" \
-            -backend-config="container_name=devlinmodulecontainertest" \
+            -backend-config="resource_group_name=testlin-modulename-rg-test" \
+            -backend-config="storage_account_name=testlinmodulenamesatest" \
+            -backend-config="container_name=testlinmodulecontainertest" \
             -backend-config="key=terraform.tfstate"
 
       - name: Terraform Validate
@@ -54,12 +54,12 @@ jobs:
         run: terraform validate -no-color
 
       - name: Terraform Plan
-        run: terraform plan -var-file=platform/test/configurations.tfvars
+        run: terraform plan -var-file=config.tfvars
         continue-on-error: true
 
       - name: Uncolored Terraform Plan for Bot
         id: plan
-        run: terraform plan -no-color -var-file=platform/test/configurations.tfvars
+        run: terraform plan -no-color -var-file=config.tfvars
         continue-on-error: true
 
       - name: Terraform PR commands Info
@@ -98,7 +98,7 @@ jobs:
   apply:
     name: Terraform Apply
 
-    if: github.ref == 'refs/heads/production' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     runs-on: ubuntu-latest
 
     defaults:
@@ -107,10 +107,10 @@ jobs:
 
     env:
       # for terraform HTTP requests to Azure ARM services with required ARM_ prefix
-      ARM_CLIENT_ID: ${{secrets.CLIENT_ID_TEST}}
-      ARM_CLIENT_SECRET: ${{secrets.CLIENT_SECRET_TEST}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID_TEST}}
-      ARM_TENANT_ID: ${{secrets.TENANT_ID_TEST}}
+      ARM_CLIENT_ID: ${{secrets.CLIENT_ID_PROD}}
+      ARM_CLIENT_SECRET: ${{secrets.CLIENT_SECRET_PROD}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID_PROD}}
+      ARM_TENANT_ID: ${{secrets.TENANT_ID_PROD}}
 
     steps:
       - name: Checkout
@@ -123,15 +123,15 @@ jobs:
         id: init
         run: |
           terraform init \
-            -backend-config="resource_group_name=devlin-modulename-rg-test" \
-            -backend-config="storage_account_name=devlinmodulenamesatest" \
-            -backend-config="container_name=devlinmodulecontainertest" \
+            -backend-config="resource_group_name=testlin-modulename-rg-test" \
+            -backend-config="storage_account_name=testlinmodulenamesatest" \
+            -backend-config="container_name=testlinmodulecontainertest" \
             -backend-config="key=terraform.tfstate"
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -auto-approve -var-file=platform/test/configurations.tfvars
+        run: terraform apply -auto-approve -var-file=config.tfvars
 
       - name: Terraform Destroy
         id: destroy
-        run: terraform destroy --auto-approve -var-file=platform/test/configurations.tfvars
+        run: terraform destroy --auto-approve -var-file=config.tfvars
