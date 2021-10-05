@@ -1,3 +1,4 @@
+#testing purposes. remove me.
 variable "platform_rg_name" {
   type = string
 }
