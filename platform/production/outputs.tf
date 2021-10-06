@@ -4,6 +4,6 @@ output "platform_rg_name" {
 }
 
 ## demo code, remove me
-output "platform_location" {
+output "platform_rg_location" {
   value = azurerm_resource_group.platform.location
 }
