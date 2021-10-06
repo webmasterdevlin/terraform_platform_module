@@ -1,6 +1,6 @@
 # cp-ne1waf
 
-## Run this command before committing. Make sure all checks are passing
+## Run this command twice before committing. Make sure all checks are passing
 
 ```zsh
 pre-commit run -a
@@ -24,8 +24,6 @@ pre-commit run -a
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.8 |
-| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | ~> 2.5.0 |
-| <a name="requirement_azurecaf"></a> [azurecaf](#requirement\_azurecaf) | ~> 1.2.6 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.79.1 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.1.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.1.0 |
@@ -55,5 +53,8 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_platform_location"></a> [platform\_location](#output\_platform\_location) | # demo code, remove me |
+| <a name="output_platform_rg_name"></a> [platform\_rg\_name](#output\_platform\_rg\_name) | # demo code, remove me |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
