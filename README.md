@@ -55,6 +55,6 @@ No resources.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_platform_location"></a> [platform\_location](#output\_platform\_location) | # demo code, remove me |
-| <a name="output_platform_rg_name"></a> [platform\_rg\_name](#output\_platform\_rg\_name) | # demo code, remove me |
+| <a name="output_rg_location"></a> [rg\_location](#output\_rg\_location) | # demo code, remove me |
+| <a name="output_rg_name"></a> [rg\_name](#output\_rg\_name) | # demo code, remove me |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
