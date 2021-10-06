@@ -23,10 +23,6 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./platform/production
-
     env:
       # for terraform HTTP requests to Azure ARM services with required ARM_ prefix
       ARM_CLIENT_ID: ${{secrets.CLIENT_ID_PROD}}
@@ -106,10 +102,6 @@ jobs:
 
     if: github.ref == 'refs/heads/production' && github.event_name == 'push'
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./platform/production
 
     env:
       # for terraform HTTP requests to Azure ARM services with required ARM_ prefix
