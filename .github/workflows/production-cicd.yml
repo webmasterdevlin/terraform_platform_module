@@ -116,8 +116,7 @@ jobs:
       ARM_CLIENT_ID: ${{secrets.CLIENT_ID_PROD}}
       ARM_CLIENT_SECRET: ${{secrets.CLIENT_SECRET_PROD}}
       ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID_PROD}}
-      ARM_TENANT_ID: ${{secrets.TENANT_ID_PROD}} \
-            -backend-config="sas_token=${{env.SAS_TOKEN}}"
+      ARM_TENANT_ID: ${{secrets.TENANT_ID_PROD}}
 
     steps:
       - name: Checkout
@@ -133,7 +132,8 @@ jobs:
             -backend-config="resource_group_name=devlin-modulename-rg-prod" \
             -backend-config="storage_account_name=devlinmodulenamesaprod" \
             -backend-config="container_name=devlinmodulecontainerprod" \
-            -backend-config="key=terraform.tfstate"
+            -backend-config="key=terraform.tfstate" \
+            -backend-config="sas_token=${{env.SAS_TOKEN}}"
 
       - name: Terraform Apply
         id: apply
