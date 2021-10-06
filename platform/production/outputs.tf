@@ -1,10 +1,10 @@
 ## demo code, remove me
 output "platform_rg_name" {
-  value = module.name_of_platform.platform_rg_name
+  value = azurerm_resource_group.name
 }
 
 ## demo code, remove me
 output "platform_location" {
-  value     = module.name_of_platform.platform_rg_location
+  value     = azurerm_resource_group.location
   sensitive = true
 }
