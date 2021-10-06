@@ -5,6 +5,5 @@ output "platform_rg_name" {
 
 ## demo code, remove me
 output "platform_location" {
-  value     = azurerm_resource_group.platform.location
-  sensitive = true
+  value = azurerm_resource_group.platform.location
 }
